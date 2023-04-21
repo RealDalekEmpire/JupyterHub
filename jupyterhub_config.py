@@ -1,3 +1,4 @@
+import os
 # Configuration file for jupyterhub.
 
 c = get_config()  #noqa
@@ -787,10 +788,10 @@ c.JupyterHub.hub_ip = 'jupyterhub'
 #    - simple: jupyterhub.spawner.SimpleLocalProcessSpawner
 #  Default: 'jupyterhub.spawner.LocalProcessSpawner'
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
-c.DockerSpawner.network_name = 'jupyterhub-network'
+c.DockerSpawner.network_name = os.environ.get('SPAWNER_NETWORK', 'jupyterhub-network')
 c.DockerSpawner.volumes = {
        'jupyterhub-user-{username}': '/home/jovyan',
-       '/home/sysadmin/customJupyter/Shared': '/home/jovyan/Shared'  # Add the shared mapping
+       os.environ.get('SHARED_FOLDER', '/home/sysadmin/Shared'): '/home/jovyan/Shared'  # Add the shared mapping
    }
 
 c.JupyterHub.services = [
@@ -801,13 +802,13 @@ c.JupyterHub.services = [
                'python',
                '-m',
                'jupyterhub_idle_culler',
-               '--timeout=3600',  # Set the idle timeout (in seconds)
-               '--cull-every=600',  # Set the culling interval (in seconds)
+               f"--timeout={os.environ.get('TIMEOUT', '3600')}",  # Set the idle timeout (in seconds)
+               f"--cull-every={os.environ.get('CULL-EVERY', '600')}",  # Set the culling interval (in seconds)
                '--concurrency=10',  # Set the number of concurrent requests when culling (optional)
            ],
        }
    ]
-c.DockerSpawner.image = 'jupyter/datascience-notebook'
+c.DockerSpawner.image = os.environ.get('SPAWNER_IMAGE', 'jupyter/datascience-notebook') 
 ## Path to SSL certificate file for the public facing interface of the proxy
 #  
 #          When setting this, you should also set ssl_key
