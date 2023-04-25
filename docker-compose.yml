@@ -7,7 +7,7 @@ services:
     networks:
       - jupyterhub-network
     volumes:
-      - /home/sysadmin/customJupyter:/srv/jupyterhub/
+      - .:/srv/jupyterhub/
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "8000:8000"
