@@ -788,11 +788,15 @@ c.JupyterHub.hub_ip = 'jupyterhub'
 #    - simple: jupyterhub.spawner.SimpleLocalProcessSpawner
 #  Default: 'jupyterhub.spawner.LocalProcessSpawner'
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
-c.DockerSpawner.network_name = os.environ.get('SPAWNER_NETWORK', 'jupyterhub-network')
+c.DockerSpawner.network_name = os.environ.get('SPAWNER_NETWORK', 'tensor-network')
 c.DockerSpawner.volumes = {
        'jupyterhub-user-{username}': '/home/jovyan',
        os.environ.get('SHARED_FOLDER', '/home/sysadmin/Shared'): '/home/jovyan/Shared'  # Add the shared mapping
    }
+c.DockerSpawner.extra_host_config = {
+    "runtime": "nvidia",
+    "devices": ["all"]
+}
 
 c.JupyterHub.services = [
        {
@@ -808,7 +812,16 @@ c.JupyterHub.services = [
            ],
        }
    ]
-c.DockerSpawner.image = os.environ.get('SPAWNER_IMAGE', 'jupyter/datascience-notebook') 
+c.DockerSpawner.image = os.environ.get('SPAWNER_IMAGE', 'jupyter/tensorflow-notebook')
+
+#c.JupyterHub.authenticator_class = LDAPAuthenticator
+#c.LDAPAuthenticator.server_address = os.environ.get('LDAP-ADDRESS')
+#c.LDAPAuthenticator.bind_dn_template = 'cn={username},' + f"{os.environ.get('SEARCH-BASE')}"
+#c.LDAPAuthenticator.user_search_base = os.environ.get('SEARCH-BASE')
+#c.LDAPAuthenticator.user_attribute = 'sAMAccountName'
+#c.LDAPAuthenticator.lookup_dn = True
+#c.LDAPAuthenticator.lookup_dn_user_dn = os.environ.get('BIND-USER')
+#c.LDAPAuthenticator.lookup_dn_password = os.environ.get('BIND-PASS')
 ## Path to SSL certificate file for the public facing interface of the proxy
 #  
 #          When setting this, you should also set ssl_key

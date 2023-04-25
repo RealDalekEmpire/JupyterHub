@@ -3,23 +3,27 @@ version: '3.8'
 services:
   jupyterhub:
     build: .
-    container_name: jupyterhub
+    container_name: ten-jupyterhub
     networks:
-      - jupyterhub-network
+      - tensor-network
     volumes:
       - /home/sysadmin/customJupyter:/srv/jupyterhub/
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - "8000:8000"
+      - "8800:8000"
     environment:
-         - SPAWNER_IMAGE=jupyter/datascience-notebook
-         - SPAWNER_NETWORK=jupyterhub-network
+         - SPAWNER_IMAGE=jupyter/tensorflow-notebook
+         - SPAWNER_NETWORK=tensor-network
          - SPAWNER_DEFAULT_URL=/lab
          - TIMEOUT=120
          - CULL-EVERY=600
          - SHARED_FOLDER=/home/sysadmin/Shared
+         - LDAP-ADDRESS=
+         - SEARCH-BASE=
+         - BIND-USER=
+         - BIND-PASS= 
 
 networks:
-  jupyterhub-network:
-    name: jupyterhub-network
+  tensor-network:
+    name: tensor-network
 
