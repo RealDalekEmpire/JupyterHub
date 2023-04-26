@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 
 services:
   jupyterhub:
@@ -17,6 +17,10 @@ services:
          - SPAWNER_DEFAULT_URL=/lab
          - TIMEOUT=120
          - CULL-EVERY=600
-         - SHARED_FOLDER=/home/sysadmin/Shared
-         - LDAP-ADDRESS=
-         - SEARCH-BASE=
+         - SHARED_FOLDER=/home/rrccit/Shared
+        #- LDAP-ADDRESS=
+        #- SEARCH-BASE=
+
+networks:
+  tensor-network:
+    #name: tensor-network
