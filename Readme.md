@@ -7,7 +7,7 @@ This repository contains a Docker Compose setup to deploy JupyterHub with Docker
 1. Clone this repository:
    ```
    git clone https://github.com/realdalekempire/JupyterHub
-   cd jupyterhub-dockerspawner
+   cd JupyterHub
    ```
 
 2. Build the JupyterHub image:
