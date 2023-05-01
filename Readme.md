@@ -2,6 +2,15 @@
 
 This repository contains a Docker Compose setup to deploy JupyterHub with DockerSpawner, including support for GPU usage and idle culling.
 
+## Docker Setup
+[Docker Instructions](https://docs.docker.com/engine/install/ubuntu/)
+
+
+## Nvidia Cuda Toolkit
+
+[Nvidia Instructions](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#setting-up-nvidia-container-toolkit)
+
+
 ## Setup
 
 1. Clone this repository:
