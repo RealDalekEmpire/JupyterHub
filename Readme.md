@@ -9,7 +9,7 @@ This repository contains a Docker Compose setup to deploy JupyterHub with Docker
 ## Nvidia Drivers 
 `apt search nvidia-driver`
 
-`sudo apt install nvidia-driver-VERSION`
+`sudo apt install nvidia-driver-VERSION-server`
 
 ## Nvidia Cuda Toolkit
 
