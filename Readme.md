@@ -122,4 +122,4 @@ A: To update the versions of JupyterHub, DockerSpawner, or jupyterhub-idle-culle
 
 **Q: How do I back up user data?**
 
-A: User data is stored in Docker volumes, which are automatically created by Docker Compose. To back up user data, you can use the `docker cp` command to copy the contents of the volume to a directory on the host machine, or use a third-party tool like [docker-volume-backup](https://github.com/loomchild/docker-volume-backup) to automate the process.
+A: User data is stored in Docker volumes, which are automatically created by Docker Compose. To back up user data, you can use the `docker cp` command to copy the contents of the volume to a directory on the host machine
