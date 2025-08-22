@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   jupyterhub:
     build: .
@@ -17,7 +15,8 @@ services:
          - SPAWNER_DEFAULT_URL=/lab
          - TIMEOUT=120
          - CULL-EVERY=600
-         - SHARED_FOLDER=/home/sysadmin/Shared
+         - SHARED_FOLDER=./Shared
+    command: ["jupyterhub", "--url=http://:8000/hub1"]
 
 networks:
   jupyterhub-network:
